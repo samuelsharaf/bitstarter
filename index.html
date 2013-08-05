@@ -95,6 +95,12 @@
         .footer a {
             color: #ccccff;
         }
+	/* http://support.addthis.com/customer/portal/questions/1136093-share-buttons-in-center-position */      
+	 div.addthis_toolbox {
+	  width:180px;
+	  margin: 0 auto;
+	 }
+</style>
      </style>
     </head>
  <body>
@@ -150,6 +156,20 @@
         <!-- We define a new 'actions' div to contain statistics, order and share buttons -->
         <div class="span5 actions">
             <div class="span8 offset2">
+
+		<!-- AddThis Button BEGIN -->
+		<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+		<a class="addthis_button_preferred_1"></a>
+		<a class="addthis_button_preferred_2"></a>
+		<a class="addthis_button_preferred_3"></a>
+		<a class="addthis_button_preferred_4"></a>
+		<a class="addthis_button_compact"></a>
+		<a class="addthis_counter addthis_bubble_style"></a>
+		</div>
+		<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+		<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51ff0bf430d8eee5"></script>
+		<!-- AddThis Button END -->
+
                 <div class="statistics">
                     <div class="span4">
                         <div class="linediv-l">
