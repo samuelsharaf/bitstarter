@@ -1,254 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Heroku Responsive Design</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<head>
+		<meta charset="utf-8">
+		<title>IMG College Sports Site on Heroku!</title>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-combined.no-icons.min.css">
-        <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css">
-        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css">
-        <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic">
-        <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800">
+		<link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-combined.no-icons.min.css">
+		<link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css">
+		<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css">
+		<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic">
+		<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800">
         
-        <script scr="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fjquery.js"></script>
-        <script scr="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap.js"></script>
+		<script scr="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fjquery.js"></script>
+		<script scr="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap.js"></script>
 
-        <style type="text/css">
 
-        /* Large desktop */
-        @media (min-width: 980px) {
-            body {
-                padding-top: 60px;
-            }
-            .linediv-l {
-                border-right: 1px white solid;
-            }
-            .linediv-r {
-                border-left: 1px white solid;
-            }
-        }
-
-        /*landscape phones and down*/
-        @media (max-width: 480px) {
-            .copy {
-                padding: 2.5% 10%;
-            }
-            .linediv-l {
-                border-bottom: 1px white solid;
-            }
-            .linediv-r {
-                border-top: 1px white solid;
-            }
-        }
+		<style type="text/css">
+		/* Large desktop */
+		        @media (min-width: 980px) {
+		            body {
+		                padding-top: 60px;
+		            }
+		            .linediv-l {
+		                border-right: 1px white solid;
+		            }
+		            .linediv-r {
+		                border-left: 1px white solid;
+		            }
+		        }
+		        /*landscape phones and down*/
+		        @media (max-width: 480px) {
+		            .copy {
+		                padding: 2.5% 10%;
+		            }
+		            .linediv-l {
+		                border-bottom: 1px white solid;
+		            }
+		            .linediv-r {
+		                border-top: 1px white solid;
+		            }
+		        }
         
-        /* All form factors */
+		        /* All form factors */
         
-        /* Main body and headings */
-        body {
-            font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-        }
-        .heading, .subheading {
-            font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
-            text-align: center;
-        }
-        p.lead {
-            padding-top: 1.5%;
-            font-size: 24px;
-            line-height: 30px
-        }
-        p {
-            font-size: 18px;
-            line-height: 24px;
-        }
-
-        /* Video pitch and Action */
-        .pitch {
-            padding: 2.5% 0%;
-        }
-        .actions {
-            background-color: #343434;
-            padding: 3% 0%;
-        }
-        .video, .thermometer, .order, .social, .statistics {
-            text-align: center;
-        }
-        .statistics h3, .statistics p {
-            color: white;
-        }
-        /* Marketing Copy and Footer */
-        .copy {
-            padding-top: 2.5%;
-            padding-bottom: 2.5%;
-            text-align: justify;
-        }
-        .asset {
-            padding: 2.5% 0%;
-        }
-        .footer {
-            color: #cccccc;
-            text-align: center;
-        }
-        .footer p {
-            font-size: 11px;
-        }
-        .footer a {
-            color: #ccccff;
-        }
-     </style>
-    </head>
- <body>
-    <!-- Mobile-friendly navbar adapted from example -->
-    <!-- http://twitter.github.io/boostratp/examples/starter-template.html -->
-    <div class="navbar navbar-inverse navbar-fixed-top">
-          <div class="navbar-inner">
-            <div class="container">
-                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="brand" href="#">Heroku-Demo</a>
-                <div class="nav-collapse collapse">
-                    <ul class="nav">
-                        <li class="active"><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                
-                </div><!--/.nav-collapse -->
-            
-            </div>
-        
-        </div>
-    
-    </div>
-
-    <div class="container">
-        <div class="row-fluid heading">
-            <div class="span12">
-            <!-- Special typography from bootstrap for lead paragraph -->
-            <h1>Heroku Mobile App Demo</h1>
-        </div>
-      </div>
-    <div class="row-fluid subheading">
-            <div class="span12">
-                <p class="lead">Demonstrating Responsive Design App on Heroku</p>
-        </div>
-    </div>
-    <div class="row-fluid pitch">
-        <div class="span5 offset1 video">
-            <!--we need to replace this with the video tag -->
-            <div class="img-polaroid">
-            <iframe width="100%" height="282" src="//www.youtube.com/embed/v1P92a-NhI0" frameborder="0" allowfullscreen></iframe>
-        </div>
-        &nbsp;
-    
-    </div>
-
-        <!-- We define a new 'actions' div to contain statistics, order and share buttons -->
-        
-        <!-- Beyond this part the marketing copy begins -->
-        <div class="row-fluid pitch">
-	        <div class="span5 offset1 video">
-	            
-	            <div class="img-polaroid">
-	            <iframe width="100%" height="282" src="//www.youtube.com/embed/3JeiC7t8lmQ" frameborder="0" allowfullscreen></iframe>
-	        </div>
+		        /* Main body and headings */
+		        body {
+		            font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+		        }
+		        .heading, .subheading {
+		            font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+		            text-align: center;
+		        }
+		        p.lead {
+		            padding-top: 1.5%;
+		            font-size: 24px;
+		            line-height: 30px
+		        }
+		        p {
+		            font-size: 18px;
+		            line-height: 24px;
+		        }
+		        /* Video pitch and Action */
+		        .pitch {
+		            padding: 2.5% 0%;
+		        }
+		        .actions {
+		            background-color: #343434;
+		            padding: 3% 0%;
+		        }
+		        .video, .thermometer, .order, .social, .statistics {
+		            text-align: center;
+		        }
+		        .statistics h3, .statistics p {
+		            color: white;
+		        }
+		        /* Marketing Copy and Footer */
+		        .copy {
+		            padding-top: 2.5%;
+		            padding-bottom: 2.5%;
+		            text-align: justify;
+		        }
+		        .asset {
+		            padding: 2.5% 0%;
+		        }
+		        .footer {
+		            color: #cccccc;
+		            text-align: center;
+		        }
+		        .footer p {
+		            font-size: 11px;
+		        }
+		        .footer a {
+		            color: #ccccff;
+					}
+		</style>
+	</head>
+		<body>
+			<!-- Mobile-friendly navbar adapted from example. -->
+			    <!-- http://twitter.github.io/bootstrap/examples/starter-template.html -->
+			    <div class="navbar navbar-inverse navbar-fixed-top">
+			      <div class="navbar-inner">
+			        <div class="container">
+			          <button type="button" class="btn btn-navbar"
+			                  data-toggle="collapse" data-target=".nav-collapse">
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			          </button>
+			          <a class="brand" href="#"><%= name %></a>
+			          <div class="nav-collapse collapse">
+			            <ul class="nav">
+			              <li class="active"><a href="#">Home</a></li>
+			              <li><a href="#about">About</a></li>
+			              <li><a href="/orders">Orders</a></li>
+			              <li><a href="#contact">Contact</a></li>
+			            </ul>
+			          </div><!--/.nav-collapse -->
+			        </div>
+			      </div>
+			    </div>
+		</body>
+</html>
 			
-			<div class="span10 offset1">
-				<div class="row-fluid section2">
-            <p>
-				<b>Heroku Connect</b>
-				Heroku Connect is a powerful product that synchronizes data between Salesforce and Heroku Postgres, making it easy for developers to build apps on Heroku that share data with Salesforce deployments. The Nibs sample app uses Heroku Connect to help Salesforce users sync content, location and customer data between the customer facing mobile app and a Salesforce org
-                </p>
-            </div>
-        </div>
-
-<!--
-        <div class="row-fluid section2">
-            <div class="span5 offset1 copy copy-right">
-                <p>
-                Service Cloud Console can take video chat calls from customers via Heroku-based mobile apps, like the Nibs sample app. In Nibs, SOS integrates with the app via an iOS SDK; you can view the Apache Cordova project used for Nibs, with the SOS integration. 
-                </p>
-            </div>
-            <div class="span5 asset">
-                <img class="img-polaroid" src="computerklas-480x300.jpg">
-            </div>
-        </div>
--->
-        <!-- For the FAQ, we introduce a bit of JS, using the accordion -->
-        <div class="row-fluid faq">
-            <div class="span10 offset1">
-                <h3>FAQ</h3>
-                <div class="accordion" id="accordion2">
-                    <div class="accordion-group">
-                        <div class="accordion-heading">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-                                What does FAQ stand for ? 
-                            </a>
-                        </div>
-                        <div id="collapseOne" class="accordion-body collapse">
-                            <div class="accordion-inner">
-                                Frequently Asked Questions
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-group">
-                        <div class="accordion-heading">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-                            Whats a frequently asked question?
-                            </a>
-                        </div>
-                        <div id="collapseTwo" class="accordion-body collapse">
-                            <div class="accordion-inner">
-                                A question which is commonly asked by users
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="row-fluid footer">
-            <div class="span12">
-                <p>This work is licensed under the <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC By-SA 3.0</a>
-                , without all the cruft that would otherwise be put at the bottom of the page </p>
-            </div>
-        </div>
-    </div>
- 
- </body>
- </html>
-
-                    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
-         
-    
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+		
