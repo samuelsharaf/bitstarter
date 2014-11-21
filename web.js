@@ -22,6 +22,8 @@ app.get('/followteam', function(request, response) {
 	  });
 });
 
+app.get('/followteam', imgsport.follow);
+
 var port = process.env.PORT || 8080;
 app.listen(port, function() {
   console.log("Listening on " + port);

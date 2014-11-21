@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Follow CalBears!</title>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+		<link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-combined.no-icons.min.css">
+		<link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css">
+		<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css">
+		<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic">
+		<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800">
+        
+		<script scr="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fjquery.js"></script>
+		<script scr="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap.js"></script>
+
+
+		<style type="text/css">
+		/* Large desktop */
+		        @media (min-width: 980px) {
+		            body {
+		                padding-top: 60px;
+		            }
+		            .linediv-l {
+		                border-right: 1px white solid;
+		            }
+		            .linediv-r {
+		                border-left: 1px white solid;
+		            }
+		        }
+		        /*landscape phones and down*/
+		        @media (max-width: 480px) {
+		            .copy {
+		                padding: 2.5% 10%;
+		            }
+		            .linediv-l {
+		                border-bottom: 1px white solid;
+		            }
+		            .linediv-r {
+		                border-top: 1px white solid;
+		            }
+		        }
+        
+		        /* All form factors */
+        
+		        /* Main body and headings */
+		        body {
+		            font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+		        }
+		        .heading, .subheading {
+		            font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+		            text-align: center;
+		        }
+		        p.lead {
+		            padding-top: 1.5%;
+		            font-size: 24px;
+		            line-height: 30px
+		        }
+		        p {
+		            font-size: 18px;
+		            line-height: 24px;
+		        }
+		        /* Video pitch and Action */
+		        .pitch {
+		            padding: 2.5% 0%;
+		        }
+		        .actions {
+		            background-color: #343434;
+		            padding: 3% 0%;
+		        }
+		        .video, .thermometer, .order, .social, .statistics {
+		            text-align: center;
+		        }
+		        .statistics h3, .statistics p {
+		            color: white;
+		        }
+		        /* Marketing Copy and Footer */
+		        .copy {
+		            padding-top: 2.5%;
+		            padding-bottom: 2.5%;
+		            text-align: justify;
+		        }
+		        .asset {
+		            padding: 2.5% 0%;
+		        }
+		        .footer {
+		            color: #cccccc;
+		            text-align: center;
+		        }
+		        .footer p {
+		            font-size: 11px;
+		        }
+		        .footer a {
+		            color: #ccccff;
+				}
+				#contact-form {  
+				   background-color: #87C489; 
+				   width: 465px;  
+				   padding: 20px;  
+				   margin: 50px auto;  
+				   border-radius: 15px;    
+				   -moz-border-radius: 15px;  
+				   -webkit-border-radius: 15px;  
+				} 
+  
+				#contact-form input,   
+				#contact-form select,   
+				#contact-form textarea,   
+				#contact-form label {  
+				   font-size: 15px;  
+				   margin-bottom: 2px;
+				   font-family: Arial, san-serif;
+				}  
+  
+				#contact-form input,   
+				#contact-form select,   
+				#contact-form textarea {  
+				   width: 450px;
+				   background: #fff;
+				   border: 0; 
+				   -moz-border-radius: 5px;  
+				   -webkit-border-radius: 5px;  
+				   border-radius: 5px;
+				   margin-bottom: 25px;  
+				   padding: 5px;  
+				}  
+  
+				#contact-form input:focus,   
+				#contact-form select:focus,   
+				#contact-form textarea:focus {  
+				   background-color: #E5E6E7; 
+				}  
+  
+				#contact-form textarea {  
+				   height: 150px;   
+				}  
+
+				#contact-form #submit {  
+				   width: 450px;   
+				   color: #BFD7C1;  
+				   border: none;  
+				   background-color: #6EA070;
+				}  
+  
+				#contact-form #submit:hover {  
+				   background-color: #BFD7C1;  
+				   color: #6EA070; 
+				}
+		</style>
+	</head>
+		<body>
+		<div id="contact-form">  
+		   <h1></h1>
+		   <h2></h2>  
+		   <p id="failure"></p>  
+		   <p id="success"></p>  
+		   <form method="post" action="emailForm.php">  
+		      <label for="name">Name: <span class="required">*</span></label>  
+		      <input type="text" id="name" name="name" value="" placeholder="Your name" required="required" autofocus="autofocus" />  
+          
+		      <label for="email">Email Address: <span class="required">*</span></label>  
+		      <input type="email" id="email" name="email" value="" placeholder="your@email.com" required="required" />  
+          
+		      <label for="website">Website: </label>  
+		      <input type="web" id="webstie" name="website" value="" />  
+          
+		      <label for="subject">Subject: </label>  
+		      <select id="subject" name="subject">   
+		         <option value="hello">I just want to say hello =]</option>
+		         <option value="quote">I'd like a quote</option>  
+		         <option value="general">General</option>   
+		      </select>  
+          
+		      <label for="message">Message: <span class="required">*</span></label>  
+		      <textarea id="message" name="message" placeholder="Write your message here, please." required="required"></textarea>  
+           
+		      <input type="submit" value="Send away!" id="submit" /> 
+		   </form>  
+		</div>	
+		</body>
+		
