@@ -10,7 +10,7 @@ app.get('/', function(request, response) {
     response.send(buffer.toString('utf-8'));
 });
 
-app.get('/followteam', function(request, response) {
+app.get('/tickets', function(request, response) {
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 	    client.query('SELECT * FROM test_table', function(err, result) {
 	      done();
@@ -22,7 +22,7 @@ app.get('/followteam', function(request, response) {
 	  });
 });
 
-app.get('/followteam', imgsport.follow);
+
 
 var port = process.env.PORT || 8080;
 app.listen(port, function() {
