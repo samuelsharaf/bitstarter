@@ -15,9 +15,11 @@ app.get('/tickets', function(request, response) {
 	    client.query('SELECT * FROM test_table', function(err, result) {
 	      done();
 	      if (err)
-	       { console.error(err); response.send("Error " + err); }
+	       { 
+			   console.error(err); response.send("Error " + err); }
 	      else
-	       { response.send(result.rows); }
+	       { 
+			   response.send(result.rows); }
 	    });
 	  });
 });
