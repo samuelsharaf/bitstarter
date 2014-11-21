@@ -12,7 +12,7 @@ app.get('/', function(request, response) {
 
 app.get('/followteam', function(request, response) {
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		console.log("-------request " + request.debug());
+		console.log("!!-------request " + request.debug());
 	    client.query('SELECT * FROM test_table', function(err, result) {
 	      done();
 	      if (err)
