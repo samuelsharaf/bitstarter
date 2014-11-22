@@ -13,17 +13,31 @@ app.get('/', function(request, response) {
 app.get('/followteam', function(request, response) {
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 		
-		console.log('******Received email as: ' + request.query.firstname);
+		//console.log('******Received email as: ' + request.query.firstname);
 		
-	    client.query('SELECT * FROM test_table', function(err, result) {
+		var firstName = request.query.firstname;
+		var lastName = request.query.lastname;
+		
+		client.query('INSERT INTO salesforce.contact (FirstName, LastName) VALUES ($1, $2)', [firstName, lastName], true)
+                .then(function () {
+					console.log('******successfully inserted: ' + lastName); 
+                    return res.send('ok');
+                })
+                .fail(function(err) {
+                    return next(err);
+             	});
+				
+		
+		
+/*	    client.query('SELECT * FROM test_table', function(err, result) {
 	      done();
 	      if (err)
 	       { 
 			   console.error(err); response.send("Error " + err); }
 	      else
 	       { 
-			   response.send(result.rows); }
-	    });
+			   response.send('ok'); }
+ 	    });*/
 	  });
 });
 
