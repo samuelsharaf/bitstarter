@@ -18,13 +18,8 @@ app.get('/followteam', function(request, response) {
 		var firstName = request.query.firstname;
 		var lastName = request.query.lastname;
 		
-		client.query('INSERT INTO salesforce.contact (FirstName, LastName) VALUES ($1, $2)', [firstName, lastName], true).then(function () {
-					console.log('******successfully inserted: ' + lastName); 
-                    return res.send('ok');
-                })
-                .fail(function(err) {
-                    return next(err);
-             	});
+		client.query('INSERT INTO salesforce.contact (FirstName, LastName) VALUES ($1, $2)', [firstName, lastName]);
+                
 	  });
 });
 
