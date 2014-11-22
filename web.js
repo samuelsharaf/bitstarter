@@ -18,8 +18,7 @@ app.get('/followteam', function(request, response) {
 		var firstName = request.query.firstname;
 		var lastName = request.query.lastname;
 		
-		client.query('INSERT INTO salesforce.contact (FirstName, LastName) VALUES ($1, $2)', [firstName, lastName], true)
-                .then(function () {
+		client.query('INSERT INTO salesforce.contact (FirstName, LastName) VALUES ($1, $2)', [firstName, lastName], true).then(function () {
 					console.log('******successfully inserted: ' + lastName); 
                     return res.send('ok');
                 })
@@ -28,8 +27,17 @@ app.get('/followteam', function(request, response) {
              	});
 				
 		
+
+		/*client.query('INSERT INTO salesforce.contact (FirstName, LastName) VALUES ($1, $2)', [firstName, lastName], true).then(function() {
+			console.log('******successfully inserted: ' + lastName); 
+            return res.send('ok');
+                
+			})
+                
+			.catch(next);
 		
-/*	    client.query('SELECT * FROM test_table', function(err, result) {
+	    
+		client.query('SELECT * FROM test_table', function(err, result) {
 	      done();
 	      if (err)
 	       { 
