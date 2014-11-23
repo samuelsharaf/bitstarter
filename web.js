@@ -27,7 +27,7 @@ app.get('/followteam', function(request, response) {
 		    	console.log(err);
 		    } else {
 		    	console.log('************row inserted');
-				response.redirect(303, '/thank-you');
+				response.redirect('/Home');
 			}
 		 
 	  });
