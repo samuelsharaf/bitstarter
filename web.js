@@ -20,16 +20,21 @@ app.get('/followteam', function(request, response) {
 		var lastName = request.query.lastname;
 		
 		client.query('INSERT INTO salesforce.contact (FirstName, LastName) VALUES ($1, $2)', [firstName, lastName],
-		function(err, result) {
-		                if (err) {
-		                    console.log(err);
-		                } else {
-		                    console.log('row inserted with id: ' + result.rows[0].id);
-							response.redirect('/');
-							done();
-		                });
+		function(err, result) 
+		{
+			if (err) 
+			{
+		    	console.log(err);
+		    } else {
+		    	console.log('row inserted with id: ' + result.rows[0].id);
+				response.redirect('/');
+			}
+		 
 	  });
+	});
 });
+
+
 
 
 
