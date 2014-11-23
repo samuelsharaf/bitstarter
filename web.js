@@ -26,8 +26,8 @@ app.get('/followteam', function(request, response) {
 			{
 		    	console.log(err);
 		    } else {
-		    	console.log('row inserted with id: ' + result.rows[0].id);
-				response.redirect('/');
+		    	console.log('************row inserted with id: ' + result.rows[0].id);
+				rres.redirect(303, '/thank-you');
 			}
 		 
 	  });
