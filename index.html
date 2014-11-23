@@ -14,7 +14,7 @@
         
 		<script scr="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fjquery.js"></script>
 		<script scr="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap.js"></script>
-
+		<script src="cssslidey.js"></script>
 
 		<style type="text/css">
 		/* Large desktop */
@@ -144,11 +144,16 @@
 		          <p class="lead"><h2>CAL BEARS</h2></p>
 		        </div>
 		      </div>
-		      <div class="row-fluid pitch">
-		        <div class="span5 offset1 video">
-		          <img class="img-polaroid" src="http://www.calbears.com/pics33/800/QG/QGMKAUOGNMSJESG.20141119012736.jpg">
-		        </div>
-
+		     
+			  <div id="slidy-container">
+			    <figure id="slidy">
+			      <img src="/images/img1.jpg" alt data-caption="Antelope Canyon, Arizona">
+			      <img src="/images/img2.jpg" alt data-caption="Canyonlands Vista, Arizona">
+			      <img src="/images/img3.jpg" alt data-caption="Mesa Arch sunrise, Moab, Utah">
+			      <img src="/images/img4.jpg" alt data-caption="Canyonlands, Arizona">
+			    </figure>
+			  </div>
+			  <script> cssSlidy(); </script>
 		        <!-- We define a new 'actions' div to contain statistics, order, and share buttons.-->
 		        <div class="span5 actions">
 		          <div class="row-fluid">
