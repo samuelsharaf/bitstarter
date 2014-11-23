@@ -11,6 +11,7 @@ app.get('/', function(request, response) {
 });
 
 app.get('/followteam', function(request, response) {
+	
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 		
 		console.log('******Received email as: ' + request.query.firstname);
@@ -18,8 +19,15 @@ app.get('/followteam', function(request, response) {
 		var firstName = request.query.firstname;
 		var lastName = request.query.lastname;
 		
-		client.query('INSERT INTO salesforce.contact (FirstName, LastName) VALUES ($1, $2)', [firstName, lastName]);
-                
+		client.query('INSERT INTO salesforce.contact (FirstName, LastName) VALUES ($1, $2)', [firstName, lastName],
+		function(err, result) {
+		                if (err) {
+		                    console.log(err);
+		                } else {
+		                    console.log('row inserted with id: ' + result.rows[0].id);
+							response.redirect('/');
+							done();
+		                });
 	  });
 });
 
