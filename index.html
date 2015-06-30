@@ -31,6 +31,28 @@ optimal performance.
        Create your own custom Modernizr build:
 www.modernizr.com/download/ -->
   <script src="js/libs/modernizr-2.5.3.min.js"></script>
+<script type="text/javascript">
+      var host = "https://liquidhub.herokuapp.com".replace(/^http/, 'ws');
+      var ws = new WebSocket(host);
+      var interval = null;
+
+      ws.onmessage = function (e) {
+        try {
+          var payload = JSON.parse(e.data);
+          if(payload.channel == "organization" && payload.organization == "{!$Organization.Id}") {
+            update_counter(payload.data);
+            update_chart(payload.data);
+            update_gauge(payload.data);
+          }
+        } catch(err) {
+          console.log('WS_Malformed', err);
+        }
+
+        if(!interval) {
+          interval = setInterval(function() {ws.send('PING')},45000);
+        }
+      };
+  </script>
 </head>
 <body>
 
@@ -38,46 +60,192 @@ www.modernizr.com/download/ -->
 
   </header>
   <div role="main">
-	<form name="myForm">
-		<fieldset>
-  <legend class="legend">Personal Information</legend>
-  <div>
-    <label for="name">Name</label><br>
-    <input type="text" placeholder="First" autofocus>
-    <input type="text" placeholder="Last">
-  </div><br>
-  <div>
-    <label for="dob">Date of Birth</label><br>
-    <input type="date" value="">
-  </div>
-  <div class="gender">
-    <label for="gender">Gender</label><br>
-    <input type="radio" name="gender"><label>Male</label>
-    <input type="radio" name="gender"><label>Female</label>
-  </div><br>
-  <div>
-    <label for="address">Address</label><br>
-    <input type="text" class="textboxAddress" placeholder="Street Address"><br>
-    <input type="text" class="textboxAddress" placeholder="Address Line 2"><br>
-    <input type="text" class="textboxAddressDetail" placeholder="City">
-    <input type="text" class="textboxAddressDetail" placeholder="State/Province"><br>
-    <input type="text" class="textboxAddressDetail" placeholder="Pincode">
-    <select class="selectOption">
-      <option value="Country">Select Country</option>
-    </select>
-  </div><br>
-  <div>
-    <label for="contact">Phone Number</label><br>
-    <input type="tel" class="textboxAddressDetail" placeholder="Home">
-    <input type="tel" class="textboxAddressDetail" placeholder="Work">
-  </div><br>
-  <div>
-    <label for="email">Email Address</label><br>
-    <input type="email" class="textboxAddressDetail" placeholder="email@example.com">
-  </div>
-</fieldset>
+	<div style="width:25%; float: left; margin-right:3%;">
+        <!-- START Counter Visual -->
+        <div id="counterwrap">
+            <h3 id="counter">
+                <i class="fa fa-cog fa-spin"></i>
+            </h3>
+        </div>
 
-	</form>
+        <script>
+            function update_counter(data) {
+                console.log(data);
+                // Border for hot...
+                // #CAA21C
+                $('#counter').fadeOut(500, function() {
+                    $('#counter').text(Math.round(data));
+                    $('#counter').fadeIn(500);
+                    if (data > 80) {
+                        $('#counterwrap').css('backgroundcolor', '#EAC95A');
+                    } else {
+                        $('#counterwrap').css('backgroundcolor', '#E9F2FF');
+                    }
+                });
+            }
+        </script>
+
+        <style>
+            img.logo {
+                width: 80px;
+                margin-top: 32px;
+                float: left;
+            }
+
+            #counterwrap {
+                float: left;
+                margin-left: 30%;
+                width: 140px;
+                background-color: #E9F2FF;
+                text-align: center;
+                height: 95px;
+                border-radius: 50%;
+                margin-top: 40px;
+                font-size: 4em;
+                color: #333;
+                padding-top: 45px;
+                border: 4px solid #3541A3;
+                background-size: contain;
+            }
+        </style>
+    </div>
+    <!-- END Counter Visual -->
+
+    <div style="width:35%; float: left; margin-right:3%;">
+        <!-- START Line Chart -->
+        <script src="//liquidhub.herokuapp.com/js/smoothie.js"></script>
+        <canvas id="mycanvas" style="margin-top:20px" width="450" height="180"></canvas>
+        <script>
+            var line1;
+            var seriesOptions;
+
+            // TODO - notification on refil that is needed...!
+            function myYRangeFunction(range) {
+                // TODO implement your calculation using range.min and range.max
+                var min = 0;
+                var max = 120;
+                return {min: min, max: max};
+            }
+
+            function createTimeline() {
+                // grid:{strokeStyle:'#3875d7'}
+                var smoothie = new SmoothieChart({yRangeFunction:myYRangeFunction,timestampFormatter:SmoothieChart.timeFormatter,
+                                                                                    millisPerPixel:120,grid:{fillStyle:'#ffffff',strokeStyle:'#cccccc',borderVisible:true},labels:{disabled:true}});
+
+                /* fluidLevel = Math.random()*800; */
+
+                line1 = new TimeSeries();
+
+                /* line1.append(new Date().getTime(), fluidLevel); */
+
+                smoothie.addTimeSeries(line1, {lineWidth:3.5,strokeStyle:'#3875d7',fillStyle:'rgba(181,213,255,0.30)'});
+                smoothie.streamTo(document.getElementById("mycanvas"), 2000);
+
+                for (var i = 0; i < smoothie.seriesSet.length; i++)
+                {
+                    if (smoothie.seriesSet[i].timeSeries === line1)
+                    {
+                        seriesOptions = smoothie.seriesSet[i].options;
+                        break;
+                    }
+                }
+
+                ////setInterval(function() {
+
+                // TODO - uncomment for real data from fluid measurement
+                /* var jqxhr = $.get( "http://arduino.local:5000/getlevel", function(data) { */
+                    //var fluidLevel;
+                    /* var jqxhr = $.get( serverAddress + '/fluidlevel', function(data) {
+                            console.log(data);
+                                fluidLevel = data.count;
+                                line1.append(new Date().getTime(), fluidLevel);
+
+                                // CHECK FOR COLOR BASED ON LEVEL....
+                                if (fluidLevel < 35)
+                                {
+                                        seriesOptions.strokeStyle = '#CAA21C';
+                                        seriesOptions.fillStyle = '#EAC95A';
+                                }
+                                else {
+                                    seriesOptions.strokeStyle = '#3875d7';
+                                    seriesOptions.fillStyle = 'rgba(181,213,255,0.30)';
+                                }
+                        })
+                        .done(function() {
+                        })
+                        .fail(function() {
+                            alert( "error" );
+                        })
+                        .always(function() {
+                        }); */
+
+
+                    /////  fluidLevel = 82; //Math.random()*800;
+                    ////// line1.append(new Date().getTime(), fluidLevel);
+                // }, 2000);
+            }
+
+            function update_chart(data) {
+                console.log(data);
+                //console.log(data);
+                fluidLevel = Math.round(data);
+                line1.append(new Date().getTime(), fluidLevel);
+
+                // CHECK FOR COLOR BASED ON LEVEL....
+                if (fluidLevel > 80) {
+                    seriesOptions.strokeStyle = '#CAA21C';
+                    seriesOptions.fillStyle = '#EAC95A';
+                } else {
+                    seriesOptions.strokeStyle = '#3875d7';
+                    seriesOptions.fillStyle = 'rgba(181,213,255,0.30)';
+                }
+            }
+
+            $(document).ready(function() { createTimeline(); });
+
+        </script>
+    </div>
+    <!-- END Line Chart -->
+
+    <div style="width:30%; float: left;">
+
+        <!-- START Just Gauge -->
+        <script src="//sfplatform.herokuapp.com/js/raphael.2.1.0.min.js"></script>
+        <script src="//sfplatform.herokuapp.com/js/justgage.1.0.1.min.js"></script>
+
+        <div id="g1"></div>
+
+        <script>
+            var g1;
+
+            $(function() {
+                g1 = new JustGage({
+                    id: "g1",
+                    value: 0,
+                    min: 0,
+                    max: 100,
+                    title: "Temp",
+                    label: "",
+                    valueFontColor: '#333',
+                    titleFontColor: '#fff',
+                    levelColorsGradient: true
+                });
+            });
+
+            function update_gauge(data) {
+                g1.refresh(Math.round(data));
+            }
+        </script>
+
+        <style>
+            #g1 {
+                width:300px; height:240px;
+                display: inline-block;
+                margin: 1em;
+                margin-top:-30px;
+            }
+        </style>
+    </div>
   </div>
   <footer>
 
