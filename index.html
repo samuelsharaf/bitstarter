@@ -1,275 +1,181 @@
-<!doctype html>
-<!—
-paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
--->
-<!--[if lt IE 7]>
-<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en">
-<![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en">
-<![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>HTML5 Hacks</title>
-  <meta name="description" content="">
+        <title>saatch.co</title>
 
-  <!-- Mobile viewport optimized: h5bp.com/viewport -->
-  <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700|Montserrat:400,700|Ubuntu:400,500|Coming+Soon' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/home.css">
+        <link href="img/favicon.ico" rel="icon" type="image/x-icon" />
+        <script type="text/javascript" src="javascripts/modernizr.custom.86080.js"></script>
+        <link href='http://fonts.googleapis.com/css?family=Raleway:400,900|Open+Sans:400,700|Montserrat:400,700|Arvo:400,700' rel='stylesheet' type='text/css'>
+    </head>
+  <body>   
+    <div id="logobar">
+        <span><img src="img/logo.png" width="200" height="58" /></span>
+    </div>
 
-  <!-- Place favicon.ico and apple-touch-icon.png in the root
-directory: mathiasbynens.be/notes/touch-icons -->
+    <ul class="cb-slideshow">
+        <li><span></span></li>
+        <li><span></span></li>
+        <li><span></span></li>
+        <li><span></span></li>
+        <li><span></span></li>
+        <li><span></span></li>
 
-  <link rel="stylesheet" href="css/style.css">
-<link href='//fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'></link>
+    </ul>   
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"></link>
-  <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
+    <div id="banner">
+     
+                        <div id="title-banner">    
+                            <h1 class="floating"><img src="img/logo.png" width="539" height="156" /></h1>
+                            <h2 style="font-family:'Ubuntu', sans-serif; font-weight:500;">Event planning made easy</h2>
+                            <br /><h3 class="text-center introtext" style="font-family: 'Raleway', serif; font-weight:400; font-size:30px;">We believe organising an event takes teamwork<br />We help you find the perfect teammates and make it easier for you to communicate with them</h3>
+                            <br />
+                            <a href="#getintouch"><button type="button" class="btn btn-green btn-lg">Get in touch</button></a>
+                            <br /><br /><a href="#features" ><i class="fa fa-angle-down fa-5x pulse"></i></a>
+                        </div>
+         <div class="clear"></div>
+    </div>
+     
+    <div class="bg-grey" id="features">
+        <div class="container-grey">
+            <h1 class="text-center"><b>How does Saatch work?</b></h1><br />
+            <div class="row">
+                <div class="text-center col-xs-12 col-lg-4 padded card-bg-grey">
+                    <i class="fa fa-paper-plane fa-5x"></i>
+                    <h2>1. Find</h2>
+                    <p><h4> Have access to a wide variety of event professionals. You won’t have to struggle anymore. We make sure your team members are the right ones for you</h4></p> 
+                </div>
+                <div class="text-center col-xs-12 col-lg-4 padded card-bg-grey">
+                    <i class="fa fa-book fa-5x"></i>
+                    <h2>2. Communicate</h2>
+                    <p><h4>To have an effective teamwork, communication is the highest priority. Our dashboard makes it easy with all the team members</h4></p>
+                </div>
 
-  <!-- All JavaScript at the bottom, except this Modernizr build.
-       Modernizr enables HTML5 elements & feature detects for
-optimal performance.
-       Create your own custom Modernizr build:
-www.modernizr.com/download/ -->
-  <script src="js/libs/modernizr-2.5.3.min.js"></script>
-<script type="text/javascript">
-      var host = "https://liquidhub.herokuapp.com".replace(/^http/, 'ws');
-      var ws = new WebSocket(host);
-      var interval = null;
+               <div class="text-center col-xs-12 col-lg-4 padded card-bg-grey">
+                    <i class="fa fa-birthday-cake fa-5x"></i>
+                   <h2>3. Enjoy</h2>
+                   <p><h4>You don’t have to worry about last minute obstacles. We have it all covered</h4> </p>
+               </div>
+            </div>
 
-      ws.onmessage = function (e) {
-        try {
-          var payload = JSON.parse(e.data);
-          if(payload.channel == "organization" && payload.organization == "{!$Organization.Id}") {
-            update_counter(payload.data);
-            update_chart(payload.data);
-            update_gauge(payload.data);
-          }
-        } catch(err) {
-          console.log('WS_Malformed', err);
-        }
-
-        if(!interval) {
-          interval = setInterval(function() {ws.send('PING')},45000);
-        }
-      };
-  </script>
-</head>
-<body>
-
-  <header>
-
-  </header>
-  <div role="main">
-	<div style="width:25%; float: left; margin-right:3%;">
-        <!-- START Counter Visual -->
-        <div id="counterwrap">
-            <h3 id="counter">
-                <i class="fa fa-cog fa-spin"></i>
-            </h3>
         </div>
-
-        <script>
-            function update_counter(data) {
-                console.log(data);
-                // Border for hot...
-                // #CAA21C
-                $('#counter').fadeOut(500, function() {
-                    $('#counter').text(Math.round(data));
-                    $('#counter').fadeIn(500);
-                    if (data > 80) {
-                        $('#counterwrap').css('backgroundcolor', '#EAC95A');
-                    } else {
-                        $('#counterwrap').css('backgroundcolor', '#E9F2FF');
-                    }
-                });
-            }
-        </script>
-
-        <style>
-            img.logo {
-                width: 80px;
-                margin-top: 32px;
-                float: left;
-            }
-
-            #counterwrap {
-                float: left;
-                margin-left: 30%;
-                width: 140px;
-                background-color: #E9F2FF;
-                text-align: center;
-                height: 95px;
-                border-radius: 50%;
-                margin-top: 40px;
-                font-size: 4em;
-                color: #333;
-                padding-top: 45px;
-                border: 4px solid #3541A3;
-                background-size: contain;
-            }
-        </style>
     </div>
-    <!-- END Counter Visual -->
+         <div class="clear"></div>
 
-    <div style="width:35%; float: left; margin-right:3%;">
-        <!-- START Line Chart -->
-        <script src="//liquidhub.herokuapp.com/js/smoothie.js"></script>
-        <canvas id="mycanvas" style="margin-top:20px" width="450" height="180"></canvas>
-        <script>
-            var line1;
-            var seriesOptions;
-
-            // TODO - notification on refil that is needed...!
-            function myYRangeFunction(range) {
-                // TODO implement your calculation using range.min and range.max
-                var min = 0;
-                var max = 120;
-                return {min: min, max: max};
-            }
-
-            function createTimeline() {
-                // grid:{strokeStyle:'#3875d7'}
-                var smoothie = new SmoothieChart({yRangeFunction:myYRangeFunction,timestampFormatter:SmoothieChart.timeFormatter,
-                                                                                    millisPerPixel:120,grid:{fillStyle:'#ffffff',strokeStyle:'#cccccc',borderVisible:true},labels:{disabled:true}});
-
-                /* fluidLevel = Math.random()*800; */
-
-                line1 = new TimeSeries();
-
-                /* line1.append(new Date().getTime(), fluidLevel); */
-
-                smoothie.addTimeSeries(line1, {lineWidth:3.5,strokeStyle:'#3875d7',fillStyle:'rgba(181,213,255,0.30)'});
-                smoothie.streamTo(document.getElementById("mycanvas"), 2000);
-
-                for (var i = 0; i < smoothie.seriesSet.length; i++)
-                {
-                    if (smoothie.seriesSet[i].timeSeries === line1)
-                    {
-                        seriesOptions = smoothie.seriesSet[i].options;
-                        break;
-                    }
-                }
-
-                ////setInterval(function() {
-
-                // TODO - uncomment for real data from fluid measurement
-                /* var jqxhr = $.get( "http://arduino.local:5000/getlevel", function(data) { */
-                    //var fluidLevel;
-                    /* var jqxhr = $.get( serverAddress + '/fluidlevel', function(data) {
-                            console.log(data);
-                                fluidLevel = data.count;
-                                line1.append(new Date().getTime(), fluidLevel);
-
-                                // CHECK FOR COLOR BASED ON LEVEL....
-                                if (fluidLevel < 35)
-                                {
-                                        seriesOptions.strokeStyle = '#CAA21C';
-                                        seriesOptions.fillStyle = '#EAC95A';
-                                }
-                                else {
-                                    seriesOptions.strokeStyle = '#3875d7';
-                                    seriesOptions.fillStyle = 'rgba(181,213,255,0.30)';
-                                }
-                        })
-                        .done(function() {
-                        })
-                        .fail(function() {
-                            alert( "error" );
-                        })
-                        .always(function() {
-                        }); */
+    <div id="picturepunch">
+    <div class="background"></div>
+    <div class="textpp"><div class="text-center">BUILD the perfect team, WORK hand in hand, ENJOY the ideal event </div></div>
+         <div class="clear"></div>
 
 
-                    /////  fluidLevel = 82; //Math.random()*800;
-                    ////// line1.append(new Date().getTime(), fluidLevel);
-                // }, 2000);
-            }
-
-            function update_chart(data) {
-                console.log(data);
-                //console.log(data);
-                fluidLevel = Math.round(data);
-                line1.append(new Date().getTime(), fluidLevel);
-
-                // CHECK FOR COLOR BASED ON LEVEL....
-                if (fluidLevel > 80) {
-                    seriesOptions.strokeStyle = '#CAA21C';
-                    seriesOptions.fillStyle = '#EAC95A';
-                } else {
-                    seriesOptions.strokeStyle = '#3875d7';
-                    seriesOptions.fillStyle = 'rgba(181,213,255,0.30)';
-                }
-            }
-
-            $(document).ready(function() { createTimeline(); });
-
-        </script>
     </div>
-    <!-- END Line Chart -->
+    <div id="testimonials">
+        <div class="container text-center">
+        
 
-    <div style="width:30%; float: left;">
+        
+            <div class="row">
+                <div class="col-xs-12 col-md-4 text-center">
+                    <div class="card">
+                        <i class="fa fa-search fa-5x"></i>
+                        <h2>Database</h2>
+                        <p>Choose your professionals among a wide list of great service providers for your event</p>
+                    </div>                      
+                </div>
+                <div class="col-xs-12 col-md-4 text-center">
+                    <div class="card">
+                        <i class="fa fa-tachometer fa-5x"></i>
+                        <h2>Dashboard</h2>
+                        <p>Manage your event and communicate easily with your professionals</p>
+                    </div>                    
+                </div>
+                 <div class="col-xs-12 col-md-4 text-center">
+                    <div class="card">
+                        <i class="fa fa-list-alt fa-5x"></i>
+                        <h2>Newsfeed</h2>
+                        <p>See what’s happening instantly with your news feed</p>
+                    </div>                    
+                </div> 
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-4 text-center">
+                    <div class="card">
+                        <i class="fa fa-file-text-o fa-5x"></i>
+                        <h2>Sign online</h2>
+                        <p>Edit and sign your contract online. No paper needed anymore. Your contract is safe and saved</p>
+                    </div>                    
+                </div>
+                <div class="col-xs-12 col-md-4 text-center">
+                    <div class="card">
+                        <i class="fa fa-life-saver fa-5x"></i>
+                        <h2>Plan B</h2>
+                        <p>If one teammate can’t make it, fear not! We have a Plan B. We make sure the show goes on no matter what</p>
+                    </div>                    
+                </div>
+                 <div class="col-xs-12 col-md-4 text-center">
+                    <div class="card">
+                        <i class="fa fa-lock fa-5x"></i>
+                        <h2>Pay safely</h2>
+                        <p>Pay safely on the platform and be sure to pay the right amount !</p>
+                    </div>                    
+                </div> 
+            </div>
+        </div>
+    </div>
+        <div id="containerpro">
+        
+        Are you a <a style="color:#754668;">professional</a> looking to <a style="color:#754668;">grow your business?</a>&nbsp;&nbsp;&nbsp; <a href="pro.php"><button class="btn btn-saatch">Sign up as a pro</button></a>
+    </div>
 
-        <!-- START Just Gauge -->
-        <script src="//sfplatform.herokuapp.com/js/raphael.2.1.0.min.js"></script>
-        <script src="//sfplatform.herokuapp.com/js/justgage.1.0.1.min.js"></script>
+     <div id="containergetintouch">
+        <div id="getintouch">
+            <div style="color:#f89406; font-size:40px;"><b>Join Saatch ...</b><br />... and be the first members of the community</div>
+        </div><br /><br />
+        
+            
+                <img src="img/email.png" height="333px" width="450"/><br />
 
-        <div id="g1"></div>
+                <h4 style="line-height:40px;">Book your seat right now by filling in your email address below:</h4>
+                 <br /><br />
+                <form action="thankyou.php" method="post" />
+                <div class="thankyouform form-inline">
+                <input type="email" name ='email' class="form-control input-lg" placeholder="Your E-mail" style="width:400px;">
+                <input type="hidden" name="type" value="classic">
+                <button type="submit" class="btn btn-lg btn-thankyouform" data-toggle="modal" data-target="#formlogin">Sign in</button>
+                <!-- <input type="submit" class="btn btn-saatch btn-lg btn-thankyouform" value="Sign in"> -->
+                </div>
+                </form>
+             
+       
 
-        <script>
-            var g1;
 
-            $(function() {
-                g1 = new JustGage({
-                    id: "g1",
-                    value: 0,
-                    min: 0,
-                    max: 100,
-                    title: "Temp",
-                    label: "",
-                    valueFontColor: '#333',
-                    titleFontColor: '#fff',
-                    levelColorsGradient: true
-                });
-            });
+        
 
-            function update_gauge(data) {
-                g1.refresh(Math.round(data));
-            }
-        </script>
+                
+        
+        
 
-        <style>
-            #g1 {
-                width:300px; height:240px;
-                display: inline-block;
-                margin: 1em;
-                margin-top:-30px;
-            }
-        </style>
+    </div>
+       
 
-  </div>
-  <footer>
 
-  </footer>
+        
+        
+       
 
-  <!-- JavaScript at the bottom for fast page loading -->
+    <script src="javascripts/jquery.js"></script>
+    <script src="javascripts/all.js"></script>
+    <script src="javascripts/bootstrap.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-  <!-- Grab Google CDN's jQuery, with a protocol relative URL;
-fall back to local if offline -->
-  <script
-src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
-</script>
-<script>
-  window.jQuery || document.write('
-  <script src="js/libs/jquery-1.7.1.min.js"><\/script>')
-</script>
 
-  <!-- scripts concatenated and minified via build script -->
-  <script src="js/plugins.js"></script>
-  <script src="js/script.js"></script>
-  <!-- end scripts -->
 
-</body>
+  </body>
 </html>
